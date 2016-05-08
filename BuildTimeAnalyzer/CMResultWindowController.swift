@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import AppKit
 
 class CMResultWindowController: NSWindowController {
     
@@ -48,8 +49,7 @@ class CMResultWindowController: NSWindowController {
         addObservers()
         
         if let window = resultWindow {
-            window.makeMainWindow()
-            window.level = Int(CGWindowLevelKey.OverlayWindowLevelKey.rawValue)
+            window.makeKeyWindow()
         }
     }
     
