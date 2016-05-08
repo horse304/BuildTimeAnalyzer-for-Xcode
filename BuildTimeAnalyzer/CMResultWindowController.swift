@@ -48,12 +48,17 @@ class CMResultWindowController: NSWindowController {
         showWindow(self)
         addObservers()
         
+        // Get currentProduct needs to be run before set resultWindow.makeMainWindow()
+        if let currentProduct = CMXcodeWorkSpace.currentProductName() {
+            processLog(currentProduct)
+        }
+        
         if let window = resultWindow {
             window.makeKeyWindow()
         }
     }
     
-    func processLog(productName: String, buildCompletionDate: NSDate?) {
+    func processLog(productName: String, buildCompletionDate: NSDate? = nil) {
         guard processingState != .processing else { return }
         processingState = .processing
         
